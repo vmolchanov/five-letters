@@ -110,5 +110,6 @@ export default defineComponent({
   .fl-game-view__keyboard {
     display: flex;
     justify-content: center;
+    margin-top: 70px;
   }
 </style>
