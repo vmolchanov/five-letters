@@ -11,6 +11,8 @@ interface ILetterCheckResult {
 
 type TCheckWordCallback = (checkResults: ILetterCheckResult[]) => void;
 
+type TGetWordByIdCallback = (word: string) => void;
+
 export const getWordId = (callback: TGetWordIdCallback) => {
     const randomIndex = Math.floor(Math.random() * (words.length + 1));
     callback(randomIndex);
@@ -35,4 +37,8 @@ export const checkWord = (index: number, userWord: string, callback: TCheckWordC
     }
 
     callback(checkResults);
+};
+
+export const getWordById = (id: number, callback: TGetWordByIdCallback) => {
+    callback(words[id]);
 };

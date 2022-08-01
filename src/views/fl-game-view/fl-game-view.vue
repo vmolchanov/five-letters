@@ -20,7 +20,7 @@ import {defineComponent} from 'vue';
 import {LETTERS_COUNT, WORDS_COUNT} from '@/config';
 import FlField from '@/components/fl-field.vue';
 import FlKeyboard from '@/components/fl-keyboard.vue';
-import {checkWord, getWordId} from '@/api/word';
+import {checkWord, getWordId, getWordById} from '@/api/word';
 import {IWord} from "@/models/word";
 
 export default defineComponent({
@@ -91,8 +91,10 @@ export default defineComponent({
           return;
         }
         if (this.currentWordIndex === WORDS_COUNT) {
-          alert('Поражение');
-          this.initGame();
+          getWordById(this.wordId, word => {
+            alert(`Поражение!\nБыло загадано слово ${word}`);
+            this.initGame();
+          });
         }
       });
     },
