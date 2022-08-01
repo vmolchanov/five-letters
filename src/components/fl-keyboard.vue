@@ -100,7 +100,7 @@ export default defineComponent({
 
   .fl-keyboard__button {
     padding: 0;
-    width: 20px;
+    width: 25px;
     height: 30px;
     text-align: center;
     color: var(--white);

@@ -57,8 +57,8 @@ export default defineComponent({
        margin-bottom: 10px;
      }
     .fl-field__col {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       font-size: 24px;
       line-height: 50px;
       text-align: center;
