@@ -1,4 +1,4 @@
-# five-words
+# five-letters
 
 ## Project setup
 ```
