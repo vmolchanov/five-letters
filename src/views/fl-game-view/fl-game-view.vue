@@ -30,10 +30,6 @@ export default defineComponent({
     FlKeyboard,
   },
   created(): void {
-    // this.initWords();
-    // getWordId((id: number) => {
-    //   this.wordId = id;
-    // });
     this.initGame();
   },
   data() {
@@ -91,12 +87,11 @@ export default defineComponent({
         const isWin = checkResults.every(({exist, position}) => exist && position);
         if (isWin) {
           alert('Победа');
-          // this.initWords();
-          // getWordId((id: number) => {
-          //   this.wordId = id;
-          // });
-          // this.excludedLetters.clear();
-          // this.currentWordIndex = 0;
+          this.initGame();
+          return;
+        }
+        if (this.currentWordIndex === WORDS_COUNT) {
+          alert('Поражение');
           this.initGame();
         }
       });
