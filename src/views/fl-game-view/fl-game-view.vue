@@ -74,7 +74,11 @@ export default defineComponent({
       if (this.currentLetterIndex < LETTERS_COUNT) {
         return;
       }
-      checkWord(this.wordId, this.words[this.currentWordIndex].letters.join(''), checkResults => {
+      checkWord(this.wordId, this.words[this.currentWordIndex].letters.join(''), ({type, checkResults}) => {
+        if (type === 'error') {
+          alert('Такого слова нет в словаре');
+          return;
+        }
         this.words[this.currentWordIndex].complete = true;
         this.words[this.currentWordIndex].checkResults = checkResults;
         this.currentWordIndex++;

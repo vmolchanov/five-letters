@@ -3,13 +3,20 @@ import {LETTERS_COUNT} from '@/config';
 
 type TGetWordIdCallback = (index: number) => void;
 
+type TResultType = 'success' | 'error';
+
 interface ILetterCheckResult {
     letter: string;
     exist: boolean;
     position: boolean;
 }
 
-type TCheckWordCallback = (checkResults: ILetterCheckResult[]) => void;
+interface ICheckResult {
+    type: TResultType;
+    checkResults: ILetterCheckResult[];
+}
+
+type TCheckWordCallback = (checkResults: ICheckResult) => void;
 
 type TGetWordByIdCallback = (word: string) => void;
 
@@ -21,6 +28,14 @@ export const getWordId = (callback: TGetWordIdCallback) => {
 export const checkWord = (index: number, userWord: string, callback: TCheckWordCallback) => {
     const word = words[index];
     const checkResults: ILetterCheckResult[] = [];
+
+    if (!words.includes(userWord)) {
+        callback(<ICheckResult> {
+            type: 'error',
+            checkResults: []
+        });
+        return;
+    }
 
     for (let i = 0; i < LETTERS_COUNT; i++) {
         const userWorkLetter = userWord[i];
@@ -36,7 +51,10 @@ export const checkWord = (index: number, userWord: string, callback: TCheckWordC
         } as ILetterCheckResult);
     }
 
-    callback(checkResults);
+    callback(<ICheckResult> {
+        type: 'success',
+        checkResults
+    });
 };
 
 export const getWordById = (id: number, callback: TGetWordByIdCallback) => {
